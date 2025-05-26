@@ -36,12 +36,17 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container is-max-desktop"  style="margin-top: -4rem;">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+    <figure>
+        <img src="./static/images/OOD_ teaser.svg" alt="Teaser"
+     style="display: block; margin: 0 auto; max-width: 100%; width: 60%; height: auto;">
+      <!-- <figcaption>Figure: Method overview diagram.</figcaption> -->
+    </figure>
+        <div class="content has-text-justified" style="margin-top: 2rem;">
           <p>
             Visuomotor policies trained via behavior cloning are vulnerable to covariate shift, where small deviations from expert trajectories can compound into failure. Common strategies to mitigate this issue involve expanding the training distribution through human-in-the-loop corrections or synthetic data augmentation. However, these approaches are often labor-intensive, rely on strong task assumptions, or compromise the quality of imitation.
             We introduce Latent Policy Barrier, a framework for robust visuomotor policy learning. Inspired by Control Barrier Functions, LPB treats the latent embeddings of expert demonstrations as an implicit barrier separating safe, in-distribution states from unsafe, out-of-distribution (OOD) ones. Our approach decouples the role of precise expert imitation and OOD recovery into two separate modules: a base diffusion policy solely on expert data, and a dynamics model trained on both expert and suboptimal policy rollout data. At inference time, the dynamics model predicts future latent states and optimizes them to stay within the expert distribution.
@@ -53,7 +58,7 @@
   </div>
 </section>
 
-<section id="technical-summary" class="section has-text-centered">
+<section id="technical-summary" class="section has-text-centered"   style="margin-top: -3rem;">
   <div class="container">
     <h2 class="title is-3">Technical Summary Video</h2>
     <div class="video-container">
@@ -65,7 +70,7 @@
   </div>
 </section>
 
-<section id="method-overview" class="section has-text-centered">
+<section id="method-overview" class="section has-text-centered"    style="margin-top: -3rem;">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Method Overview</h2>
     <figure>
@@ -88,7 +93,7 @@
   </div>
 </section>
 
-<section id="simulation-benchmark" class="section has-text-centered">
+<section id="simulation-benchmark" class="section has-text-centered"   style="margin-top: -3rem;">
   <div class="container">
     <h2 class="title is-3">Simulation Benchmark</h2>
 
@@ -119,7 +124,7 @@
   </div>
 </section>
 
-<section id="real-robot-experiment" class="section has-text-centered">
+<section id="real-robot-experiment" class="section has-text-centered"   style="margin-top: -3rem;">
   <div class="container">
     <h2 class="title is-3">Real Robot Experiment</h2>
 
