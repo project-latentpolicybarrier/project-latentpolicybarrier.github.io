@@ -4,51 +4,185 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Latent Policy Barrier</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    h1 {
-      font-size: 3em;
-      color: #2c3e50;
-    }
-    p {
-      font-size: 1.2em;
-      color: #555;
-    }
-    video {
-      margin-top: 20px;
-      max-width: 90%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9em;
-      color: #aaa;
-    }
-  </style>
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
 </head>
 <body>
-  <h1>Latent Policy Barrier</h1>
-  <p>This site is under construction.</p>
 
-  <!-- VIDEO ELEMENT HERE -->
-  <video controls>
-    <source src="lpb_video_presentation_w_voiceover.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
 
-  <div class="footer">© 2025 latentpolicybarrier.github.io</div>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <span style="color:#3273dc;">L</span>atent <span style="color:#3273dc;">P</span>olicy <span style="color:#3273dc;">B</span>arrier: Learning Robust Visuomotor Policies by Staying In-Distribution
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Visuomotor policies trained via behavior cloning are vulnerable to covariate shift, where small deviations from expert trajectories can compound into failure. Common strategies to mitigate this issue involve expanding the training distribution through human-in-the-loop corrections or synthetic data augmentation. However, these approaches are often labor-intensive, rely on strong task assumptions, or compromise the quality of imitation.
+            We introduce Latent Policy Barrier, a framework for robust visuomotor policy learning. Inspired by Control Barrier Functions, LPB treats the latent embeddings of expert demonstrations as an implicit barrier separating safe, in-distribution states from unsafe, out-of-distribution (OOD) ones. Our approach decouples the role of precise expert imitation and OOD recovery into two separate modules: a base diffusion policy solely on expert data, and a dynamics model trained on both expert and suboptimal policy rollout data. At inference time, the dynamics model predicts future latent states and optimizes them to stay within the expert distribution.
+            Both simulated and real-world experiments show that LPB improves both policy robustness and data efficiency, enabling reliable manipulation from limited expert data and without additional human correction or annotation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="technical-summary" class="section has-text-centered">
+  <div class="container">
+    <h2 class="title is-3">Technical Summary Video</h2>
+    <div class="video-container">
+      <!-- Placeholder: Technical summary video -->
+      <video controls muted loop playsinline width="80%">
+        <source src="./static/videos/lpb_video_presentation_w_voiceover.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section id="method-overview" class="section has-text-centered">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Method Overview</h2>
+    <figure>
+      <img src="./static/images/OOD_method.png" alt="Method Overview" style="max-width: 100%; width: 100%; height: auto;">
+      <!-- <figcaption>Figure: Method overview diagram.</figcaption> -->
+    </figure>
+    <div class="content" style="margin-top: 1.5rem;">
+        <div class="content has-text-justified">
+            <p>Latent Policy Barrier (LPB) <strong>decouples</strong> precise expert imitation from OOD recovery by leverages two complementary components: 
+                (a) <strong>a base diffusion policy</strong> trained exclusively on consistent, high-quality expert demonstrations, ensuring precise imitation and high task performance; 
+                and (b) an <strong>action-conditioned visual latent dynamics model</strong> trained on a broader, mixed-quality dataset combining expert demonstrations and automatically generated rollout data. 
+                At inference time, if the Euclidean distance between the current latent state and the nearest expert state is below a threshold, LPB defaults to standard action denoising.
+                Otherwise, LPB refines the action denoising process by performing policy steering in the latent space, effectively ensuring that the agent stays within the expert distribution. 
+                LPB uses the dynamics model to predict future latent states conditioned on candidate actions output from the base policy, and minimizes the distance between the predicted future latent states and their nearest neighbors from the expert demonstrations in the same latent space. 
+                In this way, LPB simultaneously achieves high task performance and robustness, resolving deviations without compromising imitation precision.
+              </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="simulation-benchmark" class="section has-text-centered">
+  <div class="container">
+    <h2 class="title is-3">Simulation Benchmark</h2>
+
+    <h3 class="title is-4">Tasks</h3>
+    <div class="gif-row">
+    <img src="./static/images/push_t.gif" style="width: 180px;">
+    <img src="./static/images/square_vis.gif" style="height: 180px;">
+    <img src="./static/images/transport_vis.gif" style="width: 180px;">
+    <img src="./static/images/tool_hang_vis.gif" style="height: 180px;">
+    </div>
+
+    <div style="width: 70%; margin: 0 auto;">
+    <figure>
+        <img src="./static/images/sim_results.png" alt="Comparison to Baselines" style="width: 100%; height: auto;">
+    </figure>
+    <div class="content has-text-justified" style="margin-top: 1.5rem;">
+        <p>
+        As shown in the table, under this limited-demonstration setting (<strong>20%</strong> demonstration), LPB matches or exceeds every baseline on all four simulated tasks, showing strong sample efficiency.
+        </p>
+    </div>
+    </div>
+    <div class="video-container">
+      <!-- Placeholder: Ablations video -->
+      <video controls loop playsinline width="80%">
+        <source src="./static/videos/ablation_video.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section id="real-robot-experiment" class="section has-text-centered">
+  <div class="container">
+    <h2 class="title is-3">Real Robot Experiment</h2>
+
+    <div style="width: 70%; margin: 0 auto;">
+    <figure>
+        <img src="./static/images/real_robot_setup.png" alt="Robot setup" style="width: 100%; height: auto;">
+    </figure>
+    <div class="content has-text-justified" style="margin-top: 1.5rem;">
+        <p>
+        We evaluate LPB’s ability to improve the robustness of an <strong>off-the-shelf pretrained policy</strong> for the cup arrangement task.
+        We perform two groups of experiments: in-distribution initial poses, where the wrist camera initially observes both the cup and the saucer (left), 
+        and out-of-distribution initial poses, where the camera sees neitherobject, sometimes not even the table (right).
+        </p>
+    </div>
+    </div>
+
+    <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Data Collection</h3>
+
+    <!-- Video block -->
+    <div style="width: 40%; margin: 0 auto;">
+    <video controls loop playsinline style="width: 100%; height: auto;">
+        <source src="./static/videos/play_data_cropped_no_audio.mp4" type="video/mp4">
+    </video>
+    </div>
+
+    <!-- Text block -->
+    <div class="content has-text-justified" style="width: 70%; margin: 1.5rem auto 0 auto;">
+    <p>
+        We collect additional data for the dynamics model from two sources: (1) We rollout the pre-trained policy checkpoint on some out-of-distribution initial poses; (2) To further diversify the training data, we collect additional random human-play trajectories using the handheld UMI gripper (examples shown in the video above).
+    </p>
+    </div>
+
+
+    <h3 class="title is-4" style="margin-top: 3rem;">In-distribution Evaluation</h3>
+    <div class="video-container">
+      <!-- Placeholder: In-distribution evaluation video -->
+      <video controls loop playsinline width="80%">
+        <source src="./static/videos/in-distribution_evaluation_video_cropped.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p>LPB matches the base policy on in-distribution initial poses. </p>
+
+    <h3 class="title is-4" style="margin-top: 3rem;">Out-of-distribution Evaluation</h3>
+    <div class="video-container">
+      <!-- Placeholder: Out-of-distribution evaluation video -->
+      <video controls loop playsinline width="80%">
+        <source src="./static/videos/ood_evaluation_video_cropped.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p>LPB substantially outperforms the base policy on out-of-distribution initial poses. </p>
+  </div>
+</section>
+
+<footer class="footer has-background-light has-text-centered">
+  <div class="content">
+    <p>&copy; 2025 Latent Policy Barrier</p>
+    <p><small>Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">NeRFies</a>.</small></p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script defer src="./static/js/fontawesome.all.min.js"></script>
+<script src="./static/js/bulma-carousel.min.js"></script>
+<script src="./static/js/index.js"></script>
 </body>
 </html>
