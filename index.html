@@ -124,9 +124,9 @@
   </div>
 </section>
 
-<section id="real-robot-experiment" class="section has-text-centered"   style="margin-top: -3rem;">
+<section id="real-robot-experiment-1" class="section has-text-centered"   style="margin-top: -3rem;">
   <div class="container">
-    <h2 class="title is-3">Real Robot Experiment</h2>
+    <h2 class="title is-3">Real Robot Experiment - Cup Arrangement</h2>
 
     <div style="width: 70%; margin: 0 auto;">
     <figure>
@@ -143,14 +143,12 @@
 
     <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Data Collection</h3>
 
-    <!-- Video block -->
     <div style="width: 40%; margin: 0 auto;">
     <video controls loop playsinline style="width: 100%; height: auto;">
         <source src="./static/videos/play_data_cropped_no_audio.mp4" type="video/mp4">
     </video>
     </div>
 
-    <!-- Text block -->
     <div class="content has-text-justified" style="width: 70%; margin: 1.5rem auto 0 auto;">
     <p>
         We collect additional data for the dynamics model from two sources: (1) We rollout the pre-trained policy checkpoint on some out-of-distribution initial poses; (2) To further diversify the training data, we collect additional random human-play trajectories using the handheld UMI gripper (examples shown in the video above).
@@ -160,25 +158,107 @@
 
     <h3 class="title is-4" style="margin-top: 3rem;">In-distribution Evaluation</h3>
     <p style="margin-bottom: 1rem; color: #666; font-style: italic;">All videos are 4× real-time.</p>
-    <div class="video-container">
-      <!-- Placeholder: In-distribution evaluation video -->
-      <video controls loop playsinline width="80%">
-        <source src="./static/videos/in-distribution_evaluation_video_cropped.mp4" type="video/mp4">
-      </video>
+
+    <div class="video-container" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+      <div style="text-align: center; max-width: 600px;">
+        <video controls loop playsinline width="600">
+          <source src="./static/videos/baseline_in_distri_combined_video.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top: 0.5rem;">Base Policy (Baseline)</p>
+      </div>
+
+      <div style="text-align: center; max-width: 600px;">
+        <video controls loop playsinline width="600">
+          <source src="./static/videos/ours_in_distri_combined_video.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top: 0.5rem;">LPB (Ours)</p>
+      </div>
     </div>
-    <p>LPB matches the base policy on in-distribution initial poses. </p>
+
+    <p style="margin-top: 1rem;">LPB matches the base policy on in-distribution initial poses.</p>
+
 
     <h3 class="title is-4" style="margin-top: 3rem;">Out-of-distribution Evaluation</h3>
     <p style="margin-bottom: 1rem; color: #666; font-style: italic;">All videos are 4× real-time.</p>
-    <div class="video-container">
-      <!-- Placeholder: Out-of-distribution evaluation video -->
-      <video controls loop playsinline width="80%">
-        <source src="./static/videos/ood_evaluation_video_cropped.mp4" type="video/mp4">
-      </video>
+
+    <div class="video-container" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+      <div style="text-align: center; max-width: 600px;">
+        <video controls loop playsinline width="600">
+          <source src="./static/videos/baseline_ood_combined_video.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top: 0.5rem;">Base Policy (Baseline)</p>
+      </div>
+
+      <div style="text-align: center; max-width: 600px;">
+        <video controls loop playsinline width="600">
+          <source src="./static/videos/ours_ood_combined_video.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top: 0.5rem;">LPB (Ours)</p>
+      </div>
     </div>
-    <p>LPB substantially outperforms the base policy on out-of-distribution initial poses. </p>
+
+    <p style="margin-top: 1rem;">LPB substantially outperforms the base policy on out-of-distribution initial poses. </p>
+
   </div>
 </section>
+
+
+
+<section id="real-robot-experiment-2" class="section has-text-centered"   style="margin-top: -3rem;">
+  <div class="container">
+    <h2 class="title is-3">Real Robot Experiment - Belt Assembly</h2>
+
+    <div style="width: 80%; margin: 0 auto;">
+    <figure>
+        <img src="./static/images/robot_setup_belt.png" alt="Robot setup" style="width: 100%; height: auto;">
+    </figure>
+    <div class="content has-text-justified" style="margin-top: 1.5rem;">
+        <p>
+        We further evaluate on the Belt Assembly task from the NIST board tasks. We collect 200 expert trajectories to train the base policy and 400 rollout trajectories to train the dynamics model. We evaluate both LPB and the base policy on out-of-distribution initial poses.
+        </p>
+    </div>
+    </div>
+
+    <!-- <h3 class="title is-4" style="margin-top: 3rem;">In-distribution Evaluation</h3> -->
+    <p style="margin-bottom: 1rem; color: #666; font-style: italic;">All videos are 2× real-time.</p>
+
+    <!-- <div class="video-container" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+      <div style="text-align: center; max-width: 600px;">
+        <video controls loop playsinline width="600">
+          <source src="./static/videos/baseline_id_ood_combined_5_8.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top: 0.5rem;">Base Policy (Baseline)</p>
+      </div>
+
+      <div style="text-align: center; max-width: 600px;">
+        <video controls loop playsinline width="600">
+          <source src="./static/videos/ours_id_ood_combined_5_8.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top: 0.5rem;">LPB (Ours)</p>
+      </div>
+    </div> -->
+<div class="video-container" style="display: block; text-align: center;">
+  <div style="margin-bottom: 2rem;">
+    <video controls loop playsinline width="1000">
+      <source src="./static/videos/baseline_id_ood_combined_5_8.mp4" type="video/mp4">
+    </video>
+    <p style="margin-top: 0.5rem;">Base Policy (Baseline)</p>
+  </div>
+
+  <div>
+    <video controls loop playsinline width="1000">
+      <source src="./static/videos/ours_id_ood_combined_5_8.mp4" type="video/mp4">
+    </video>
+    <p style="margin-top: 0.5rem;">LPB (Ours)</p>
+  </div>
+</div>
+
+    <!-- <p style="margin-top: 1rem;">LPB matches the base policy on in-distribution initial poses.</p> -->
+
+  </div>
+</section>
+
+
 
 <footer class="footer has-background-light has-text-centered">
   <div class="content">
