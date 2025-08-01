@@ -1,0 +1,27 @@
+<!-- data_collection.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Collection</title>
+  <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+    <h1 style="text-align: center; font-size: 1.8rem; margin-top: 3rem; font-weight: bold;">
+    Data Collection for Cup Arrangement
+    </h1>
+
+  <div style="width: 40%; margin: 0 auto;">
+    <video controls loop playsinline style="width: 100%; height: auto;">
+      <source src="./static/videos/play_data_cropped_no_audio.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="content has-text-justified" style="width: 70%; margin: 1.5rem auto 0 auto;">
+    <p>
+      We collect additional data for the dynamics model from two sources: (1) We rollout the pre-trained policy checkpoint on some out-of-distribution initial poses; (2) To further diversify the training data, we collect additional random human-play trajectories using the handheld UMI gripper (examples shown in the video above).
+    </p>
+  </div>
+</body>
+</html>

@@ -103,6 +103,7 @@
     <img src="./static/images/square_vis.gif" style="height: 180px;">
     <img src="./static/images/transport_vis.gif" style="width: 180px;">
     <img src="./static/images/tool_hang_vis.gif" style="height: 180px;">
+    <img src="./static/images/libero_long_video.gif" style="width: 180px;">
     </div>
 
     <div style="width: 70%; margin: 0 auto;">
@@ -141,7 +142,7 @@
     </div>
     </div>
 
-    <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Data Collection</h3>
+    <!-- <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Data Collection</h3>
 
     <div style="width: 40%; margin: 0 auto;">
     <video controls loop playsinline style="width: 100%; height: auto;">
@@ -153,8 +154,14 @@
     <p>
         We collect additional data for the dynamics model from two sources: (1) We rollout the pre-trained policy checkpoint on some out-of-distribution initial poses; (2) To further diversify the training data, we collect additional random human-play trajectories using the handheld UMI gripper (examples shown in the video above).
     </p>
-    </div>
+    </div> -->
 
+    <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Data Collection</h3>
+
+    <p class="has-text-centered" style="margin-top: 1rem;">
+      If you are interested in seeing the data collection, 
+      <a href="data_collection.html">please click here</a>.
+    </p>
 
     <h3 class="title is-4" style="margin-top: 3rem;">In-distribution Evaluation</h3>
     <p style="margin-bottom: 1rem; color: #666; font-style: italic;">All videos are 4× real-time.</p>
@@ -237,21 +244,29 @@
         <p style="margin-top: 0.5rem;">LPB (Ours)</p>
       </div>
     </div> -->
-<div class="video-container" style="display: block; text-align: center;">
-  <div style="margin-bottom: 2rem;">
-    <video controls loop playsinline width="1000">
-      <source src="./static/videos/baseline_id_ood_combined_5_8.mp4" type="video/mp4">
-    </video>
-    <p style="margin-top: 0.5rem;">Base Policy (Baseline)</p>
-  </div>
+    <div class="video-container" style="display: block; text-align: center;">
+      <div style="margin-bottom: 2rem;">
+        <video controls loop playsinline width="1000">
+          <source src="./static/videos/baseline_id_ood_combined_5_8.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top: 0.5rem;">Base Policy (Baseline)</p>
+      </div>
 
-  <div>
-    <video controls loop playsinline width="1000">
-      <source src="./static/videos/ours_id_ood_combined_5_8.mp4" type="video/mp4">
-    </video>
-    <p style="margin-top: 0.5rem;">LPB (Ours)</p>
-  </div>
-</div>
+      <div>
+        <video controls loop playsinline width="1000">
+          <source src="./static/videos/ours_id_ood_combined_5_8.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top: 0.5rem;">LPB (Ours)</p>
+      </div>
+    </div>
+
+
+    <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Data Collection</h3>
+
+    <p class="has-text-centered" style="margin-top: 1rem;">
+      If you are interested in seeing the rollout videos in wrist camera view, which better illustrate the initial task variations, 
+      <a href="belt_wrist_view.html">please click here</a>.
+    </p>
 
     <!-- <p style="margin-top: 1rem;">LPB matches the base policy on in-distribution initial poses.</p> -->
 
